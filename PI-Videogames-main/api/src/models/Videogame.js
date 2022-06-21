@@ -20,29 +20,15 @@ module.exports = (sequelize) => {
     },
     release_date:{
       type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW
     },
     rating:{
-      type: DataTypes.INTEGER,
+      type: DataTypes.FLOAT
     },
     platforms:{
-      type: DataTypes.STRING,
+      type:DataTypes.ARRAY(DataTypes.STRING),
       allowNull: false
     }
   },{timestamp: false});
-
-  sequelize.define('videogame_genre', {
-    id: {
-
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-      allowNull: false,
-      primaryKey: true
-    },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false
-    }
-
-  })
   
 };
