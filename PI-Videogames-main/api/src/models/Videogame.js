@@ -4,31 +4,35 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('videogame', {
+    id:{
+      type:DataTypes.UUID,//Te genera un id aleatorio con numeros y letras
+      defaultValue: DataTypes.UUIDV4,//Identificador universal segun la norma V4
+      allowNull:false,//campo obligatorio
+      primaryKey: true
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     description:{
-      type: DataTypes.TEXT,
-      allowNull: false
+      type:DataTypes.TEXT,
+      allowNull:false
     },
     release_date:{
-      type: DataTypes.DATEONLY,
+      type:DataTypes.ARRAY(DataTypes.STRING),
       defaultValue: DataTypes.NOW
     },
     rating:{
-      type: DataTypes.FLOAT
+      type:DataTypes.FLOAT
     },
     platforms:{
-      type:DataTypes.ARRAY(DataTypes.STRING), // array of platforms like playstation, xbox, etc...
-      allowNull: false
+      type:DataTypes.ARRAY(DataTypes.STRING),
+      allowNull:false
     },
-    id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
+    createdInDb:{
+      type: DataTypes.BOOLEAN,
       allowNull:false,
-      primaryKey: true
+      defaultValue:true,
     }
-  },{timestamp: false});
-  
-};
+  });
+}
