@@ -21,9 +21,7 @@ const getGames = async (name) => {
     if (gameDb) {
         return gameDb;
     }
-    const game = await axios.get(
-      `https://api.rawg.io/api/games?search=${name}&key=${APIKEY}`
-    );
+    const game = await axios.get(`https://api.rawg.io/api/games/${name}?key=${APIKEY}`);
     return {
       id: game.data.id,
       name: game.data.name,

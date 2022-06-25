@@ -4,7 +4,7 @@ const { Videogame, Genre } = require("../db");
 const { getGenres, getGenresDb } = require("./getGenres");
 const { APIKEY } = process.env;
 const { getById } = require("./getGameByDb");
-const {getGames} = require("./getGame");
+const { getGames } = require("./getGame");
 
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
@@ -28,7 +28,6 @@ const getGamesi = async () => {
         genres: game.genres.map((genre) => genre.name),
         platforms: game.platforms.map((game) => game.platform.name),
         release_date: game.platforms.map((game) => game.released_at),
-        
       };
     });
     return apiGame;
@@ -60,21 +59,30 @@ const getAllGames = async () => {
     return new Error(error + "error en el servidor");
   }
 };
-router.get("/videogames", (req, res) => {
-    const {name} = req.query
-    getAllGames().then((data) => {
-        if(name){
-            getGames(name).then((response) => {
-                if(response.name){
-                    res.json(response)
-                }else {
-                    res.status(404).send('Videogame not found')
-                }
-            })
-        }else if(data){
-            res.json(data)
-        }
-    })
+router.get("/videogames", async (req, res) => {
+  const { name } = req.query;
+  const games = await getAllGames();
+  if (name) {
+    let gameName = await games.filter((game) =>
+      game.name.toLowerCase().includes(name.toLowerCase())
+    );
+    gameName.length ? res.send(gameName) : res.send('error');
+  }else{
+    res.send(games);
+  }
+  // getAllGames().then((data) => {
+  //     if(name){
+  //         getGames(name).then((response) => {
+  //             if(response){
+  //                 res.json(response)
+  //             }else {
+  //                 res.status(404).send('Videogame not found')
+  //             }
+  //         })
+  //     }else if(data){
+  //         res.json(data)
+  //     }
+  // })
 });
 
 router.get("/videogame/:id", async (req, res) => {
