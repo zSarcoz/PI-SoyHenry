@@ -5,9 +5,9 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('videogame', {
     id:{
-      type:DataTypes.UUID,//Te genera un id aleatorio con numeros y letras
-      defaultValue: DataTypes.UUIDV4,//Identificador universal segun la norma V4
-      allowNull:false,//campo obligatorio
+      type:DataTypes.UUID,// Genero un id aleatorio con numeros y letras
+      defaultValue: DataTypes.UUIDV4,// Identificador universal segun la norma V4
+      allowNull:false,// Hago el campo obligatorio
       primaryKey: true
     },
     name: {
@@ -28,6 +28,10 @@ module.exports = (sequelize) => {
     platforms:{
       type:DataTypes.ARRAY(DataTypes.STRING),
       allowNull:false
+    },
+    image: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     createdInDb:{
       type: DataTypes.BOOLEAN,

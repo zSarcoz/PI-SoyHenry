@@ -4,7 +4,7 @@ const { Videogame, Genre } = require("../db");
 const { getGenres, getGenresDb } = require("./getGenres");
 const { APIKEY } = process.env;
 const { getById } = require("./getGameByDb");
-const { getGames } = require("./getGame");
+// const { getGames } = require("./getGame");
 
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
@@ -23,8 +23,9 @@ const getGamesi = async () => {
       return {
         // id: game.id,
         name: game.name,
+        image: game.background_image,
         rating: game.rating,
-        // description:game.description,
+        description:game.description,
         genres: game.genres.map((genre) => genre.name),
         platforms: game.platforms.map((game) => game.platform.name),
         release_date: game.platforms.map((game) => game.released_at),
@@ -66,9 +67,9 @@ router.get("/videogames", async (req, res) => {
     let gameName = await games.filter((game) =>
       game.name.toLowerCase().includes(name.toLowerCase())
     );
-    gameName.length ? res.send(gameName) : res.send('error');
+    gameName.length ? res.json(gameName) : res.json('error');
   }else{
-    res.send(games);
+    res.json(games);
   }
   // getAllGames().then((data) => {
   //     if(name){
@@ -91,7 +92,7 @@ router.get("/videogame/:id", async (req, res) => {
     if (id) {
       const games = await getById(id);
       games
-        ? res.status(200).send(games)
+        ? res.status(200).json(games)
         : res.status(404).send("No se encontro un video juego con ese id");
     }
   } catch (error) {
@@ -103,21 +104,23 @@ router.post("/videogames", async (req, res, next) => {
   try {
     let {
       name,
+      image,
       rating,
       platforms,
       release_date,
       description,
-      createdInDb,
+      // createdInDb,
       genre,
     } = req.body;
 
     const gameCreate = await Videogame.create({
       name,
+      image,
       rating,
       platforms,
       release_date,
       description,
-      createdInDb,
+      // createdInDb,
     });
 
     let genreDb = await Genre.findAll({ where: { name: genre } });

@@ -10,6 +10,7 @@ const getById = async (id) => {
       return {
         id: dB.id,
         name: dB.name,
+        image:dB.image,
         description: dB.description,
         release_date: dB.release_date,
         rating: dB.rating,
@@ -23,16 +24,15 @@ const getById = async (id) => {
     const game = await axios.get(`https://api.rawg.io/api/games/${id}?key=${APIKEY}`);
     return {
       id: game.data.id,
-        name: game.data.name,
-        description: game.data.description,
-        release_date: game.data.released,
-        rating: game.data.rating,
-
-        platforms: game.data.platforms.map((game) => game.platform.name),
-        genres: game.data.genres.map((genre) => genre.name),
+      name: game.data.name,
+      image: game.data.background_image,
+      description: game.data.description,
+      release_date: game.data.released,
+      rating: game.data.rating,
+      platforms: game.data.platforms.map((game) => game.platform.name),
+      genres: game.data.genres.map((genre) => genre.name),
     };
 
-    // return pokemonApi;
   } catch (e) {
     throw new Error("Ups, server error");
   }

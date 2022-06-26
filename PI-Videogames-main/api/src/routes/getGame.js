@@ -29,7 +29,7 @@ const getGames = async (name) => {
       release_date: game.data.released,
       rating: game.data.rating,
     //   platforms: game.data.platforms.map((game) => game.platform.name),
-    //   genres: game.data.genres.map((genre) => genre.name),
+      genres: game.data.genres.map((genre) => genre.name),
     };
   } catch (err) {
     console.log(err);
