@@ -1,4 +1,4 @@
-const axios = require("axios");
+import axios from "axios";
 
 //Create and export actions called like I want them to be
 
@@ -11,10 +11,40 @@ export function getVideogames() {
     });
   };
 }
+export function postVideogames(payload) {
+  return async function () {
+    try {
+      await axios.post("http://localhost:3001/videogames",{...payload});
+      
+    } catch (err) {
+      console.log(err);
+    }
+  };
+}
+export function setGenres() {
+  return async function (dispatch) {
+    const response = await axios.post("http://localhost:3001/genres");
+    return dispatch({
+      type: "SET_GENRES",
+      payload: response.data,
+    });
+  };
+}
+export function getGenres() {
+  return async function (dispatch) {
+    const response = await axios.get("http://localhost:3001/genres");
+    return dispatch({
+      type: "GET_GENRES",
+      payload: response.data,
+    });
+  };
+}
 
 export function getNameGames(name) {
   return async function (dispatch) {
-    const response = await axios.get(`http://localhost:3001/videogames?name=${name}`);
+    const response = await axios.get(
+      `http://localhost:3001/videogames?name=${name}`
+    );
     return dispatch({
       type: "GET_NAME_GAMES",
       payload: response.data,
@@ -25,7 +55,9 @@ export function getNameGames(name) {
 export function getGameById(id) {
   return async function (dispatch) {
     try {
-      const response = await axios.get(`http://localhost:3001/videogames/${id}`);
+      const response = await axios.get(
+        `http://localhost:3001/videogames/${id}`
+      );
       return dispatch({
         type: "GET_VIDEOGAME_ID",
         payload: response.data,
@@ -54,5 +86,19 @@ export function orderByName(payload) {
   return {
     type: "ORDER_BY_NAME",
     payload,
+  };
+}
+
+export function orderByRating(payload) {
+  return {
+    type: "ORDER_BY_RATING",
+    payload,
+  };
+}
+
+export function getClean() {
+  return {
+    type: "GET_CLEAN",
+    payload: [],
   };
 }
