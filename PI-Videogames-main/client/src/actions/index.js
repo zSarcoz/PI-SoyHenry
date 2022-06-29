@@ -15,6 +15,7 @@ export function postVideogames(payload) {
   return async function () {
     try {
       await axios.post("http://localhost:3001/videogames",{...payload});
+      alert('Succefully created');
       
     } catch (err) {
       console.log(err);

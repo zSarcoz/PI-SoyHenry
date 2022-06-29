@@ -1,29 +1,35 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {getNameGames} from "../actions";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { getNameGames } from "../actions";
+import styles from "./styles/SearchBar.module.css";
 
 export default function SearchBar() {
-    const dispatch = useDispatch();
-    const [name, setName] = useState("");
+  const dispatch = useDispatch();
+  const [name, setName] = useState("");
 
-    const handleInputChange = (e) =>{
-        e.preventDefault();
-        setName(e.target.value);
-        console.log(name);
-    }
+  const handleInputChange = (e) => {
+    e.preventDefault();
+    setName(e.target.value);
+  };
 
-    const handleSubmit = (e) =>{
-        e.preventDefault();
-        dispatch(getNameGames(name));
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(getNameGames(name));
+    setName("");
+  };
 
-    return(
-        <div className="search-bar">
-            <input type="text" placeholder="Search for a game" onChange={(e)=>handleInputChange()}/>
-            <button type="submit" onClick={(e) =>handleSubmit(e)}>Search</button>
-            {/* <button type="submit" onClick={() => dispatch(getNameGames(name))}>Search</button> */}
-        </div>
-    )
+  return (
+    <div className="search-bar">
+      <input className={styles.input}
+        type="text"
+        placeholder="Search a Game..."
+        onChange={(e) => handleInputChange()}
+      />
+      <button className={styles.btnSearch} type="submit" onClick={(e) => handleSubmit(e)}>
+        Search
+      </button>
+      {/* <button type="submit" onClick={() => dispatch(getNameGames(name))}>Search</button> */}
+    </div>
+  );
 }

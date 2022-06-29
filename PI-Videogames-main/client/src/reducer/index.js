@@ -45,15 +45,15 @@ export default function rootReducer(state = initialSatate, action) {
     case "FILTER_GAMES_BY_GENRE": //done
       const allGames = state.allVideogames;
 
-      const typeFilter =
+      const genreFilter =
         action.payload === 'todos'
           ? allGames
           : allGames.filter((game) => {
-              return game.type.includes(action.payload);
+              return game.genre.includes(action.payload);
             });
       return {
         ...state,
-        videogames: typeFilter,
+        videogames: genreFilter,
       };
 
     case "FILTER_GAMES_CREATED": //done
@@ -94,10 +94,10 @@ export default function rootReducer(state = initialSatate, action) {
         allGamesName,
       };
 
-    case "GET_RATING":
-      const ratings =
+    case "ORDER_BY_RATING":
+      const sortByRatings =
         action.payload === "asc"
-          ? state.videogames.sort((a, b) => {
+          ? state.allVideogames.sort((a, b) => {
               if (a.name < b.name) {
                 return -1;
               }
@@ -106,7 +106,7 @@ export default function rootReducer(state = initialSatate, action) {
               }
               return 0;
             })
-          : state.videogames.sort(function (a, b) {
+          : state.allVideogames.sort(function (a, b) {
               if (a.name > b.name) {
                 return -1;
               }
@@ -115,10 +115,7 @@ export default function rootReducer(state = initialSatate, action) {
               }
               return 0;
             });
-      return {
-        ...state,
-        allGamesName,
-      };
+            return { ...state, videogames: sortByRatings };
     
     default:
       return state;
