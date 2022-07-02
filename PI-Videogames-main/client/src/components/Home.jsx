@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -20,8 +20,8 @@ export default function Home() {
   const dispatch = useDispatch();
   const [order, setOrder] = useState("");
   const allGames = useSelector((state) => state.videogames);
-  const allGenres = useSelector((state) => state.genres);
-  console.log(allGenres);
+  const allGenres = useSelector((state) => state.genresGet);
+  // console.log(allGenres);
 
   useEffect(() => {
     dispatch(getVideogames());
@@ -30,12 +30,12 @@ export default function Home() {
 
   // PAGINATION ------------------------------
   const [currentPage, setCurrentPage] = useState(1); //Me guardo la pagina actual, siempre empezamos desde la 1
-  const [gamesPerPage, setGamesPerPage] = useState(15); //Seteo la cantidad de juegos que va a haber por pagina
+  const [gamesPerPage, setGamesPerPage] = useState(105); //Seteo la cantidad de juegos que va a haber por pagina
   const indexOfLastGame = currentPage * gamesPerPage; //Calculo el indice del ultimo juego que va a aparecer en la pagina
   const indexOfFirstGame = indexOfLastGame - gamesPerPage; //Calculo el indice del primer juego que va a aparecer en la pagina
   const currentGames = allGames.slice(indexOfFirstGame, indexOfLastGame); //Agarro de allGames los juegos que van a aparecer en la pagina, desde el indice de firstGame hasta el indice de lastGame
   const paginate = (pageNumber) => setCurrentPage(pageNumber); //Funcion que me permite cambiar de pagina
-
+  // console.log(currentGames);
   // // RELOAD PAGE ------------------------------
   // function handleClick(e) {
   //     e.preventDefault();
@@ -105,7 +105,7 @@ export default function Home() {
           className={styles.orderAndFilter}
           onChange={(e) => handleGenreFilter(e)}
         >
-          <option value="" disabled defaultValue>
+          <option value="" disabled selected>
             Filter by Genre
           </option>
           <option value="todos">All</option>
@@ -139,14 +139,17 @@ export default function Home() {
       </div> */}
       <div className={styles.divCard}>
         {currentGames.length > 0 ? (
-          currentGames?.map((videogame) => (
-            <NavLink key={videogame.id} to={`/videogame/${videogame.id}`}>
+          currentGames.map((videogame) => (
+            <Link key={videogame.id} to={`/videogame/${videogame.id}`}>
               <Card
+                key={videogame.name}
                 name={videogame.name}
                 image={videogame.image}
                 genres={videogame.genres}
+                // platforms={videogame.platforms}
+                // rating={videogame.rating}
               />
-            </NavLink>
+            </Link>
           ))
         ) : (
           <Loading className={styles.loading} />

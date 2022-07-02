@@ -57,7 +57,7 @@ export function getGameById(id) {
   return async function (dispatch) {
     try {
       const response = await axios.get(
-        `http://localhost:3001/videogames/${id}`
+        `http://localhost:3001/videogame/${id}`
       );
       return dispatch({
         type: "GET_VIDEOGAME_ID",

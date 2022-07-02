@@ -96,6 +96,7 @@ body{
     font-weight: bolder;
     letter-spacing: 15px;
     border-bottom: 3px solid rgba(194, 194, 194, 0.788);
+    margin-bottom: 3rem;
     transition: 0.3s ease;
 }
 
@@ -108,13 +109,14 @@ body{
     font-size: 20px;
     /* border: 3px solid black; */
     margin-top: 0px;
+    margin-bottom: 2rem;
 }
 
 
 .button{
     width: 130px;
     height: 50px;
-    margin-top: 25px;
+    margin-top: 40px;
     font-size: 18px;
     border: 1px solid white;
     border-radius: 10px;
