@@ -30,10 +30,10 @@ export default function Home() {
 
   // PAGINATION ------------------------------
   const [currentPage, setCurrentPage] = useState(1); //Me guardo la pagina actual, siempre empezamos desde la 1
-  const [gamesPerPage, setGamesPerPage] = useState(105); //Seteo la cantidad de juegos que va a haber por pagina
+  const [gamesPerPage, setGamesPerPage] = useState(15); //Seteo la cantidad de juegos que va a haber por pagina
   const indexOfLastGame = currentPage * gamesPerPage; //Calculo el indice del ultimo juego que va a aparecer en la pagina
   const indexOfFirstGame = indexOfLastGame - gamesPerPage; //Calculo el indice del primer juego que va a aparecer en la pagina
-  const currentGames = allGames.slice(indexOfFirstGame, indexOfLastGame); //Agarro de allGames los juegos que van a aparecer en la pagina, desde el indice de firstGame hasta el indice de lastGame
+  const currentGames = allGames?.slice(indexOfFirstGame, indexOfLastGame); //Agarro de allGames los juegos que van a aparecer en la pagina, desde el indice de firstGame hasta el indice de lastGame
   const paginate = (pageNumber) => setCurrentPage(pageNumber); //Funcion que me permite cambiar de pagina
   // console.log(currentGames);
   // // RELOAD PAGE ------------------------------
@@ -81,7 +81,7 @@ export default function Home() {
         <NavLink to="/home">
           <button className={styles.btnHome}>Home</button>
         </NavLink>
-        <NavLink to="/videogames">
+        <NavLink to="/videogames/create">
           <button className={styles.btnAdd}>Add Game</button>
         </NavLink>
       </header>
@@ -129,14 +129,14 @@ export default function Home() {
           <option value="api">Api</option>
         </select>
       </div>
-      {/* <div className={styles.paginado}>
+      <div className={styles.paginado}>
         <Paginado
           gamesPerPage={gamesPerPage}
           allGames={allGames}
           paginate={paginate}
           currentPage={currentPage}
         />
-      </div> */}
+      </div>
       <div className={styles.divCard}>
         {currentGames.length > 0 ? (
           currentGames.map((videogame) => (

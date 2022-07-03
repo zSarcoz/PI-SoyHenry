@@ -17,7 +17,7 @@ const router = Router();
 const getGamesi = async () => {
   try {
     const url_game = await axios.get(
-      `https://api.rawg.io/api/games?key=${APIKEY}`
+      `https://api.rawg.io/api/games?key=${APIKEY}&page_size=100&page=1`
     );
     const apiGame = await url_game.data.results.map((game) => {
       return {

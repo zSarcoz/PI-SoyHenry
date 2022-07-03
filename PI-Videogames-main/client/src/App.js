@@ -16,7 +16,7 @@ function App() {
           <Route path="/home">
             <Home />
           </Route>
-          <Route exact path="/videogame/create">
+          <Route exact path="/videogames/create">
             <AddGame />
           </Route>
           <Route exact path="/videogame/:id">

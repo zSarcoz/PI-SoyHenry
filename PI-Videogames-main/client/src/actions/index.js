@@ -42,14 +42,14 @@ export function getGenres() {
 }
 
 export function getNameGames(name) {
-  return async function (dispatch) {
-    const response = await axios.get(
-      `http://localhost:3001/videogames?name=${name}`
-    );
-    return dispatch({
-      type: "GET_NAME_GAMES",
-      payload: response.data,
-    });
+  return (dispatch) => {
+    axios.get(`http://localhost:3001/videogames?name=` + name).then((videogames) => 
+      dispatch({
+        type: "GET_NAME_GAMES",
+        payload: videogames.data,
+      })
+    )
+    .catch((err) => alert(`Videogames doesn't exist "${name}"`));
   };
 }
 

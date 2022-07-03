@@ -16,6 +16,7 @@ nav {
   flex-direction: column;
   background-color: rgba(34, 34, 34, 0.63);
   text-decoration: none;
+  z-index: 500;
 }
 
 ul {
