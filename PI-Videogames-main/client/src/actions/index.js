@@ -12,11 +12,12 @@ export function getVideogames() {
   };
 }
 export function postVideogames(payload) {
-  return async function () {
+  return async function (dispatch) {
     try {
-      await axios.post("http://localhost:3001/videogames",{...payload});
-      alert('Succefully created');
-      
+      const response = await axios.post("http://localhost:3001/videogames",payload);
+      console.log(response);
+      return response;
+      // alert('Succefully created');
     } catch (err) {
       console.log(err);
     }
@@ -43,22 +44,22 @@ export function getGenres() {
 
 export function getNameGames(name) {
   return (dispatch) => {
-    axios.get(`http://localhost:3001/videogames?name=` + name).then((videogames) => 
-      dispatch({
-        type: "GET_NAME_GAMES",
-        payload: videogames.data,
-      })
-    )
-    .catch((err) => alert(`Videogames doesn't exist "${name}"`));
+    axios
+      .get(`http://localhost:3001/videogames?name=` + name)
+      .then((videogames) =>
+        dispatch({
+          type: "GET_NAME_GAMES",
+          payload: videogames.data,
+        })
+      )
+      .catch((err) => alert(`Videogames doesn't exist "${name}"`));
   };
 }
 
 export function getGameById(id) {
   return async function (dispatch) {
     try {
-      const response = await axios.get(
-        `http://localhost:3001/videogame/${id}`
-      );
+      const response = await axios.get(`http://localhost:3001/videogame/${id}`);
       return dispatch({
         type: "GET_VIDEOGAME_ID",
         payload: response.data,

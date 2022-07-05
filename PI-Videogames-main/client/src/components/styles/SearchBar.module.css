@@ -9,18 +9,20 @@
     border-radius: 10px;
     box-sizing: border-box;
     opacity:0.9;
-    color: black;
+    color: white;
     transition: .8s ease;
     font-family: 'Roboto', sans-serif;
 }
 
 .input:hover{
     width: 20rem;
+    color: black;
     background-color: white;
 }
 
 .input:focus{
     width: 20rem;
+    color: black;
     background-color: white;
 }
 

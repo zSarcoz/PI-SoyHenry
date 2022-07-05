@@ -23,7 +23,7 @@ export default function rootReducer(state = initialSatate, action) {
     case "GET_NAME_GAMES": //done
       return {
         ...state,
-        videogames: [action.payload],
+        videogames: action.payload,
       };
 
     case "GET_VIDEOGAME_ID": //done

@@ -9,7 +9,7 @@ export default function Paginado({
 }) {
   const numPages = [];
 
-  for (let i = 0; i <= Math.ceil(allGames.length / gamesPerPage); i++) {
+  for (let i = 0; i < Math.ceil(allGames.length / gamesPerPage); i++) {
     numPages.push(i + 1);
   }
 

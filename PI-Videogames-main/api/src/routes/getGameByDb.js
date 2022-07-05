@@ -26,7 +26,7 @@ const getById = async (id) => {
       id: game.data.id,
       name: game.data.name,
       image: game.data.background_image,
-      description: game.data.description,
+      description: game.data.description_raw,
       release_date: game.data.released,
       rating: game.data.rating,
       platforms: game.data.platforms.map((game) => game.platform.name),
