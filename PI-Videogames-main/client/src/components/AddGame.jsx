@@ -45,7 +45,7 @@ function validate({
 export default function AddGame() {
   const dispatch = useDispatch();
   const allGenres = useSelector((state) => state.genresGet);
-  const videogame = useSelector((state) => state.videogames);
+  // const videogame = useSelector((state) => state.videogames)
 
   useEffect(() => {
     dispatch(getGenres());
@@ -66,7 +66,7 @@ export default function AddGame() {
   console.log(game);
 
   const handleOnChange = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     setGame({
       ...game,
       [e.target.name]: e.target.value,
@@ -77,6 +77,13 @@ export default function AddGame() {
         [e.target.name]: e.target.value,
       })
     );
+  };
+
+  const handleDelete = (el) => {
+    setGame({
+      ...game,
+      genres: game.genres.filter((e) => e !== el),
+    });
   };
 
   const handleSelectChange = (e) => {
@@ -91,22 +98,43 @@ export default function AddGame() {
     }
   };
 
-  const handleSelectChangePlatforms = (e) => {
-    e.preventDefault();
-    if (platforms.length === 10) {
-      alert("limit 10 platforms");
-    } else if (platforms.length < 10) {
-      setGame({
-        ...game,
-        platforms: [...platforms, e.target.value],
-      });
-    }
-  };
+  // const handleSelectChangePlatforms = (e) => {
+  //   e.preventDefault();
+  //   if (platforms.length === 10) {
+  //     alert("limit 10 platforms");
+  //   } else if (platforms.length < 10) {
+  //     setGame({
+  //       ...game,
+  //       platforms: [...platforms, e.target.value],
+  //     });
+  //   }
+  // };
 
-  let history = useHistory();
+  function handleCheck(e) {
+    // e.preventDefault();
+    // if (platforms.length === 10) {
+    //   alert("limit 10 platforms");
+    // } else if (platforms.length < 10) {
+      // setGame({
+      //   ...game,
+      //   platforms: [...platforms, e.target.value],
+      // });
+    // }
+
+    if(e.target.checked){   //true o false
+        setGame({
+            ...game,
+            platforms: [...platforms, e.target.value]
+            //platforms.join(', ')
+        })
+    }
+  }
+
+  const history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(game);
     if (
       name.length !== 0 ||
       image.length !== 0 ||
@@ -122,7 +150,7 @@ export default function AddGame() {
         image: "",
         description: "",
         genres: [],
-        // platforms: [],
+        platforms: [],
         rating: 0,
         release_date: "",
       });
@@ -188,17 +216,74 @@ export default function AddGame() {
                   </option>
                 ))}
               </select>
+              <ul className={styles.ul}>
+            <li className={styles.li} key={"key"}>
+              {game.genres.map((el) => (
+                <button
+                  className={styles.btnGenre}
+                  type="button"
+                  key={el.id}
+                  onClick={() => handleDelete(el)}
+                >
+                  {el}
+                </button>
+              ))}
+            </li>
+          </ul>
             </div>
           </div>
-          <div className={styles.hiddenCB}>
-            <div className={styles.platforms}>
-              <select onChange={(e) => handleSelectChangePlatforms(e)}>
-                <label>Platforms:</label>
-                {videogame.map((game) => {
-                  return <option value={game.platforms}>{game.platforms}</option>;
-                })}
-              </select>
-            </div>
+          <div>
+            <label>Platforms:</label>
+            <label className={styles.labelCheck}>
+              <input
+              className={styles.checks}
+                type="checkbox"
+                value="PC"
+                name="PC"
+                onChange={(e) => handleCheck(e)}
+              />
+              PC
+            </label>
+            <label className={styles.labelCheck}>
+              <input
+              className={styles.checks}
+                type="checkbox"
+                value="Nintendo Switch"
+                name="Nintendo Switch"
+                onChange={(e) => handleCheck(e)}
+              />
+              Nintendo Switch
+            </label>
+            <label className={styles.labelCheck}>
+              <input
+              className={styles.checks}
+                type="checkbox"
+                value="Xbox Series S/X"
+                name="Xbox Series S/X"
+                onChange={(e) => handleCheck(e)}
+              />
+              Xbox Series S/X
+            </label>
+            <label className={styles.labelCheck}>
+              <input
+              className={styles.checks}
+                type="checkbox"
+                value="PlayStation 4"
+                name="PlayStation 4"
+                onChange={(e) => handleCheck(e)}
+              />
+              PlayStation 4
+            </label>
+            <label className={styles.labelCheck}>
+              <input
+              className={styles.checks}
+                type="checkbox"
+                value="PlayStation 5"
+                name="PlayStation 5"
+                onChange={(e) => handleCheck(e)}
+              />
+              PlayStation 5
+            </label>
           </div>
           <p>
             <label>Rating:</label>

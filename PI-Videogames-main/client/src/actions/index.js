@@ -12,12 +12,13 @@ export function getVideogames() {
   };
 }
 export function postVideogames(payload) {
-  return async function (dispatch) {
+  return async function () {
     try {
-      const response = await axios.post("http://localhost:3001/videogames",payload);
-      console.log(response);
-      return response;
-      // alert('Succefully created');
+      // const response = 
+      await axios.post("http://localhost:3001/videogames",{...payload});
+      // console.log(response);
+      // return response;
+      alert('Succefully created');
     } catch (err) {
       console.log(err);
     }

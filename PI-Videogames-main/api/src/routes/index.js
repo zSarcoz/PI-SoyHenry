@@ -18,7 +18,7 @@ const getGamesi = async () => {
   try {
     let games = [];
   let address = '';
-  while (games.length < 20) {
+  while (games.length < 100) {
     !games.length && (address = `https://api.rawg.io/api/games?key=${APIKEY}`);
     let { data } = await axios.get(address);
     games = [...games, ...data.results];
@@ -32,7 +32,7 @@ const getGamesi = async () => {
             description: el.description_raw,
             rating:el.rating,
             platforms:el.platforms.map(el => el.platform.name),
-            release_date:el.platforms.map(el => el.released_at),
+            release_date:el.released,
             image: el.background_image,
             genres: el.genres.map((genre) => genre.name),
             
@@ -42,7 +42,7 @@ const getGamesi = async () => {
     return apiGame;
   // try {
   //   const url_game = await axios.get(
-  //     `https://api.rawg.io/api/games?key=${APIKEY}&page_size=100&page=1`
+  //     `https://api.rawg.io/api/games?key=${APIKEY}&page_size=100&page=1`df
   //   );
   //   const apiGame = await url_game.data.results.map((game) => {
   //     return {
@@ -173,7 +173,7 @@ router.post("/videogames", async (req, res, next) => {
     platforms,
     release_date,
     description,
-    createdInDb,
+    // createdInDb,
     genres,
   } = req.body;
 
@@ -191,7 +191,7 @@ router.post("/videogames", async (req, res, next) => {
       platforms,
       release_date,
       description,
-      createdInDb,
+      // createdInDb,
     });
 
     let genreDb = await Genre.findAll({ where: { name: genres } });

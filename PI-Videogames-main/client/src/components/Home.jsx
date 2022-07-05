@@ -37,12 +37,12 @@ export default function Home() {
   const paginate = (pageNumber) => setCurrentPage(pageNumber); //Funcion que me permite cambiar de pagina
   console.log(currentGames);
   // // RELOAD PAGE ------------------------------
-  // function handleClick(e) {
-  //     e.preventDefault();
-  //     dispatch(getVideogames());
-  //     setCurrentPage(1);
-  //     setOrder(e.target.value);
-  //   }
+  function handleClick(e) {
+      e.preventDefault();
+      dispatch(getVideogames());
+      setCurrentPage(1);
+      setOrder(e.target.value);
+    }
 
   // FILTER BY GENRE ------------------------------
   const handleGenreFilter = (e) => {
@@ -79,7 +79,7 @@ export default function Home() {
       <Header />
       <header className={styles.headerHome}>
         <NavLink to="/home">
-          <button className={styles.btnHome}>Home</button>
+          <button className={styles.btnHome} onClick= {e=> handleClick(e)}>Back to All</button>
         </NavLink>
         <NavLink to="/videogames/create">
           <button className={styles.btnAdd}>Add Game</button>
