@@ -21,21 +21,15 @@ function validate({
   }
   if (!image) errors.image = <b>Image is required❌</b>;
   if (!description) errors.description = <b>Description is required❌</b>;
-  if (!genres.length) {
-    errors.genre = <b>Must choose a Videogame Genre ❌</b>;
-  } else if (genres.length > 5) {
-    <b>Only can choose five genres ❌</b>;
+  if (!genres.length && genres.length > 5) {
+    errors.genre = <b>Must choose a Videogame Genre between 1 - 5 ❌</b>;
   }
 
-  // if (!platforms.length) {
-  //   errors.platforms = <b>Must choose a platform ❌</b>;
-  // } else if (platforms.length > 10) {
-  //   <b>Only can choose 10 platforms ❌</b>;
-  // }
-  if (!rating.length) {
+  if (!platforms.length) {
+    errors.platforms = <b>Must choose a platform ❌</b>;
+  }
+  if (!rating.length || rating > 5 || rating <= 0) {
     errors.rating = <b>Specific a rating 1-5 ❌</b>;
-  } else if (rating >= 5) {
-    <b>You can only place 1 to 5 ❌</b>;
   }
   if (!release_date) errors.release_date = <b>Release date is required❌</b>;
 
@@ -67,10 +61,12 @@ export default function AddGame() {
 
   const handleOnChange = (e) => {
     // e.preventDefault();
-    setGame({
-      ...game,
-      [e.target.name]: e.target.value,
-    });
+    
+      setGame({
+        ...game,
+        [e.target.name]: e.target.value,
+      });
+    
     setErrors(
       validate({
         ...game,
@@ -98,17 +94,17 @@ export default function AddGame() {
     }
   };
 
-  // const handleSelectChangePlatforms = (e) => {
-  //   e.preventDefault();
-  //   if (platforms.length === 10) {
-  //     alert("limit 10 platforms");
-  //   } else if (platforms.length < 10) {
-  //     setGame({
-  //       ...game,
-  //       platforms: [...platforms, e.target.value],
-  //     });
-  //   }
-  // };
+  const handleOnRating = (e) => {
+    e.preventDefault();
+    if (rating > 5) {
+      alert("You can only place 1 to 5");
+    } else if (genres.length <= 5) {
+      setGame({
+        ...game,
+        [e.target.name]: e.target.value,
+      });
+    }
+  };
 
   function handleCheck(e) {
     // e.preventDefault();
@@ -135,27 +131,41 @@ export default function AddGame() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(game);
-    if (
-      name.length !== 0 ||
-      image.length !== 0 ||
-      description.length !== 0 ||
-      genres.length !== 0 ||
-      // platforms.length !== 0 ||
-      rating.length !== 0 ||
-      release_date.length !== 0
-    ) {
-      dispatch(postVideogames(game));
-      setGame({
-        name: "",
-        image: "",
-        description: "",
-        genres: [],
-        platforms: [],
-        rating: 0,
-        release_date: "",
-      });
-      history.push("/home");
+    try{
+      if (
+        name.length !== 0 &&
+        image.length !== 0 &&
+        description.length !== 0 &&
+        genres.length !== 0 &&
+        platforms.length !== 0 &&
+        rating.length !== 0 &&
+        rating > 0 && rating < 6 &&
+        release_date.length !== 0
+      ) {
+        dispatch(postVideogames(game));
+        setGame({
+          name: "",
+          image: "",
+          description: "",
+          genres: [],
+          platforms: [],
+          rating: 0,
+          release_date: "",
+        });
+        history.push("/home");
+      }
+      else if(name.length === 0 ||
+        image.length === 0 ||
+        description.length === 0 ||
+        genres.length === 0 ||
+        platforms.length === 0 ||
+        release_date.length === 0){
+          alert("Please fill all the fields");
+      }
+    }catch{
+      console.log('Error to Create a Game')
     }
+    
   };
 
   return (
@@ -290,7 +300,7 @@ export default function AddGame() {
             <input
               className={styles.input}
               type="number"
-              placeholder="Rating"
+              placeholder="Rating 1 - 5"
               value={rating}
               name="rating"
               onChange={(e) => handleOnChange(e)}
@@ -300,7 +310,7 @@ export default function AddGame() {
             <label>Release Date:</label>
             <input
               className={styles.input}
-              type="text"
+              type="date"
               placeholder="Release Date"
               value={release_date}
               name="release_date"
@@ -316,6 +326,8 @@ export default function AddGame() {
       </form>
       <div className={styles.danger}>
         {errors.name && <p className={styles.error}>{errors.name}</p>}
+        {errors.genres && <p className={styles.error}>{errors.genres}</p>}
+        {errors.platforms && <p className={styles.error}>{errors.platforms}</p>}
         {errors.description && (
           <p className={styles.error}>{errors.description}</p>
         )}

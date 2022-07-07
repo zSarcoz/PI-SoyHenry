@@ -4,6 +4,7 @@ import Home from "./components/Home";
 import LandingPage from "./components/LandingPage";
 import AddGame from "./components/AddGame";
 import GameDetail from "./components/GameDetail";
+import ErrorNotFound from "./components/ErrorNotFound";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route exact path="/videogame/:id">
             <GameDetail />
           </Route>
+          <Route path= '*' component = {ErrorNotFound}/>
         </div>
       </BrowserRouter>
     </>

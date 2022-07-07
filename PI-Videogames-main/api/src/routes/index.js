@@ -18,7 +18,7 @@ const getGamesi = async () => {
   try {
     let games = [];
   let address = '';
-  while (games.length < 100) {
+  while (games.length < 5) {
     !games.length && (address = `https://api.rawg.io/api/games?key=${APIKEY}`);
     let { data } = await axios.get(address);
     games = [...games, ...data.results];
@@ -81,7 +81,6 @@ const getByDb = async () => {
         image: game.image,
         rating: game.rating,
         genres: game.genres.map((genre) => {return genre.name}),
-        // platforms: game.platforms.map((game) => game.platforms),
         platforms: game.platforms,
         release_date: game.release_date,
         description: game.description,
@@ -112,7 +111,7 @@ router.get("/videogames", async (req, res) => {
     let gameName = await games.filter((game) =>
       game.name.toLowerCase().includes(name.toLowerCase())
     );
-    gameName.length ? res.send(gameName) : res.status(404).json("error")
+    gameName.length ? res.send(gameName) : res.status(404).json("Videogame not found");
   } else {
     res.json(games);
   }

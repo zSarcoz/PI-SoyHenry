@@ -38,11 +38,11 @@ export default function Home() {
   console.log(currentGames);
   // // RELOAD PAGE ------------------------------
   function handleClick(e) {
-      e.preventDefault();
-      dispatch(getVideogames());
-      setCurrentPage(1);
-      setOrder(e.target.value);
-    }
+    e.preventDefault();
+    dispatch(getVideogames());
+    setCurrentPage(1);
+    setOrder(e.target.value);
+  }
 
   // FILTER BY GENRE ------------------------------
   const handleGenreFilter = (e) => {
@@ -79,7 +79,9 @@ export default function Home() {
       <Header />
       <header className={styles.headerHome}>
         <NavLink to="/home">
-          <button className={styles.btnHome} onClick= {e=> handleClick(e)}>Back to All</button>
+          <button className={styles.btnHome} onClick={(e) => handleClick(e)}>
+            Back to All
+          </button>
         </NavLink>
         <NavLink to="/videogames/create">
           <button className={styles.btnAdd}>Add Game</button>
@@ -140,19 +142,23 @@ export default function Home() {
       <div className={styles.divCard}>
         {currentGames.length > 0 ? (
           currentGames.map((videogame) => (
-            <Link key={videogame.id} to={`/videogame/${videogame.id}`}>
-              <Card
-                key={videogame.name}
-                name={videogame.name}
-                image={videogame.image}
-                genres={videogame.genres}
-                // platforms={videogame.platforms}
-                // rating={videogame.rating}
-              />
-            </Link>
+            // <>
+              <Link key={videogame.id} to={`/videogame/${videogame.id}`}>
+                <Card
+                  key={videogame.name}
+                  name={videogame.name}
+                  image={videogame.image}
+                  genres={videogame.genres}
+                  // platforms={videogame.platforms}
+                  // rating={videogame.rating}
+                />
+              </Link>
+            // </>
           ))
         ) : (
-          <Loading className={styles.loading} />
+          // <>
+            <Loading className={styles.loading} />
+          // </>
         )}
       </div>
     </div>
