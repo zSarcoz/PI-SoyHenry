@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from "./components/Home";
 import LandingPage from "./components/LandingPage";
 import AddGame from "./components/AddGame";
@@ -11,19 +11,21 @@ function App() {
     <>
       <BrowserRouter>
         <div className="App">
-          <Route exact path="/">
-            <LandingPage />
-          </Route>
-          <Route path="/home">
-            <Home />
-          </Route>
-          <Route exact path="/videogames/create">
-            <AddGame />
-          </Route>
-          <Route exact path="/videogame/:id">
-            <GameDetail />
-          </Route>
-          <Route path= '*' component = {ErrorNotFound}/>
+          <Switch>
+            <Route exact path="/">
+              <LandingPage />
+            </Route>
+            <Route path="/home">
+              <Home />
+            </Route>
+            <Route exact path="/videogames/create">
+              <AddGame />
+            </Route>
+            <Route exact path="/videogame/:id">
+              <GameDetail />
+            </Route>
+            <Route component={ErrorNotFound} />
+          </Switch>
         </div>
       </BrowserRouter>
     </>
