@@ -84,24 +84,12 @@ export default function AddGame() {
 
   const handleSelectChange = (e) => {
     e.preventDefault();
-    if (genres.length === 5) {
-      alert("limit 5 genres");
-    } else if (genres.length < 5) {
+    if (genres.length === 2) {
+      alert("limit 2 genres");
+    } else if (genres.length < 2) {
       setGame({
         ...game,
         genres: [...genres, e.target.value],
-      });
-    }
-  };
-
-  const handleOnRating = (e) => {
-    e.preventDefault();
-    if (rating > 5) {
-      alert("You can only place 1 to 5");
-    } else if (genres.length <= 5) {
-      setGame({
-        ...game,
-        [e.target.name]: e.target.value,
       });
     }
   };
@@ -134,7 +122,7 @@ export default function AddGame() {
     try{
       if (
         name.length !== 0 &&
-        image.length !== 0 &&
+        // image.length !== 0 &&
         description.length !== 0 &&
         genres.length !== 0 &&
         platforms.length !== 0 &&
@@ -155,7 +143,7 @@ export default function AddGame() {
         history.push("/home");
       }
       else if(name.length === 0 ||
-        image.length === 0 ||
+        // image.length === 0 ||
         description.length === 0 ||
         genres.length === 0 ||
         platforms.length === 0 ||

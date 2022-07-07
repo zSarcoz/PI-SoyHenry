@@ -10,7 +10,7 @@ const getById = async (id) => {
       return {
         id: dB.id,
         name: dB.name,
-        image:dB.image,
+        image:dB.image ? dB.image : "https://androidayuda.com/wp-content/uploads/2019/07/android-error.jpg",
         description: dB.description,
         release_date: dB.release_date,
         rating: dB.rating,

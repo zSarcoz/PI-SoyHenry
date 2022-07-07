@@ -142,23 +142,27 @@ export default function Home() {
       <div className={styles.divCard}>
         {currentGames.length > 0 ? (
           currentGames.map((videogame) => (
-            // <>
+            <>
               <Link key={videogame.id} to={`/videogame/${videogame.id}`}>
                 <Card
                   key={videogame.name}
                   name={videogame.name}
-                  image={videogame.image}
+                  image={
+                    videogame.image
+                      ? videogame.image
+                      : "https://androidayuda.com/wp-content/uploads/2019/07/android-error.jpg"
+                  }
                   genres={videogame.genres}
                   // platforms={videogame.platforms}
                   // rating={videogame.rating}
                 />
               </Link>
-            // </>
+            </>
           ))
         ) : (
-          // <>
+          <>
             <Loading className={styles.loading} />
-          // </>
+          </>
         )}
       </div>
     </div>

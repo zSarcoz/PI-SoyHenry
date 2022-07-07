@@ -18,7 +18,7 @@ const getGamesi = async () => {
   try {
     let games = [];
   let address = '';
-  while (games.length < 5) {
+  while (games.length < 100) {
     !games.length && (address = `https://api.rawg.io/api/games?key=${APIKEY}`);
     let { data } = await axios.get(address);
     games = [...games, ...data.results];
@@ -40,23 +40,7 @@ const getGamesi = async () => {
     })
     
     return apiGame;
-  // try {
-  //   const url_game = await axios.get(
-  //     `https://api.rawg.io/api/games?key=${APIKEY}&page_size=100&page=1`df
-  //   );
-  //   const apiGame = await url_game.data.results.map((game) => {
-  //     return {
-  //       id: game.id,
-  //       name: game.name,
-  //       image: game.background_image,
-  //       rating: game.rating,
-  //       genres: game.genres.map((genre) => genre.name),
-  //       platforms: game.platforms.map((game) => game.platform.name),
-  //       release_date: game.platforms.map((game) => game.released_at),
-  //       description: game.description,
-  //     };
-  //   });
-  //   return apiGame;
+
   } catch (error) {
     return new Error(error + "error en el servidor");
   }
@@ -94,15 +78,11 @@ const getByDb = async () => {
 };
 
 const getAllGames = async () => {
-  // try {
     const gamesInfo = await getGamesi();
     const dbInfo = await getByDb();
-    // const infoAll = gamesInfo.concat(dbInfo);
     const infoAll = [...gamesInfo, ...dbInfo];
     return infoAll;
-  // } catch (error) {
-  //   return new Error(error + "error en el servidor");
-  // }
+
 };
 router.get("/videogames", async (req, res) => {
   const { name } = req.query;
@@ -115,19 +95,7 @@ router.get("/videogames", async (req, res) => {
   } else {
     res.json(games);
   }
-  // getAllGames().then((data) => {
-  //     if(name){
-  //         getGames(name).then((response) => {
-  //             if(response){
-  //                 res.json(response)
-  //             }else {
-  //                 res.status(404).send('Videogame not found')
-  //             }
-  //         })
-  //     }else if(data){
-  //         res.json(data)
-  //     }
-  // })
+
 });
 
 router.get("/videogame/:id", async (req, res) => {
@@ -144,25 +112,7 @@ router.get("/videogame/:id", async (req, res) => {
   }
 });
 
-// router.post('/videogames', async (req, res) => {
-//   let { name, image, description, release_date, rating, platforms, genres } = req.body;
-//   try {
-//       const gameCreated = await Videogame.findOrCreate({ //devuelvo un array (OJOOO!!!!)
-//           where: {
-//               name,
-//               image,
-//               description,
-//               release_date,
-//               rating,
-//               platforms,
-//           }
-//       })
-//       await gameCreated[0].setGenres(genres); // relaciono ID genres al juego cread
-//   } catch (err) {
-//       console.log(err);
-//   }
-//   res.send('Created succesfully, saludos desde el BACK!!')
-// })
+
 
 router.post("/videogames", async (req, res, next) => {
   const {
@@ -172,16 +122,11 @@ router.post("/videogames", async (req, res, next) => {
     platforms,
     release_date,
     description,
-    // createdInDb,
     genres,
   } = req.body;
 
   try {
-    // const game = await getGames(name)
-
-    // if (game.id) {
-    //   return res.status(404).send('Already exists');
-    // }
+  
 
     const gameCreate = await Videogame.create({
       name,
@@ -190,7 +135,6 @@ router.post("/videogames", async (req, res, next) => {
       platforms,
       release_date,
       description,
-      // createdInDb,
     });
 
     let genreDb = await Genre.findAll({ where: { name: genres } });
@@ -220,4 +164,6 @@ router.get("/genres", async (req, res, next) => {
     next(error);
   }
 });
+
+
 module.exports = router;

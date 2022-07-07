@@ -25,7 +25,7 @@ export default function GameDetail() {
       </Link>
 
       {game.id ? (
-        // <>
+        <>
           <div className={styles.card}>
             <img
               className={styles.image}
@@ -52,13 +52,13 @@ export default function GameDetail() {
               Release Date: {game.release_date}
             </div>
           </div>
-        /* </> */
+        </>
       ) : (
-        // <>
+        <>
           <div className={styles.loading}>
             <Loading />
           </div>
-        /* </> */
+        </>
       )}
     </div>
   );
