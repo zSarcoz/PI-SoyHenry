@@ -1,16 +1,21 @@
-import React from "react";
+import React, { useEffect} from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setGenres } from "../actions";
+import { setGenres, getVideogames } from "../actions";
 import style from "./styles/LandingPage.module.css";
 import callOfDuty from "../images/callOfDuty.jpg";
 import Header from "./Header";
 
 export default function LandingPage() {
   const dispatch = useDispatch();
-  const handlePostGenres = () => {
+  // const handlePostGenres = () => {
+  //   dispatch(setGenres());
+  // };
+
+  useEffect(() => {
     dispatch(setGenres());
-  };
+    dispatch(getVideogames());
+  }, [dispatch]);
 
   return (
     <div className={style.divLanding}>
@@ -35,7 +40,7 @@ export default function LandingPage() {
             button below
           </p>
           <Link to="/home">
-            <button className={style.button} onClick={handlePostGenres()}>
+            <button className={style.button}>
               Go to Home
             </button>
           </Link>
