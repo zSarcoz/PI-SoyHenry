@@ -9,16 +9,21 @@ import {
   filterGamesCreated,
   orderByName,
   orderByRating,
+  getNameGames,
 } from "../actions";
 import Header from "./Header";
 import Card from "./Card";
 import Paginado from "./Paginado";
 import Loading from "./Loading";
 import styles from "./styles/Home.module.css";
+import s from "./styles/Header.module.css";
+import sty from "./styles/SearchBar.module.css";
 
 export default function Home() {
   const dispatch = useDispatch();
   const [order, setOrder] = useState("");
+  const [name, setName] = useState("");
+
   const allGames = useSelector((state) => state.videogames);
   const allGenres = useSelector((state) => state.genresGet);
   // console.log(allGenres);
@@ -36,6 +41,19 @@ export default function Home() {
   const currentGames = allGames?.slice(indexOfFirstGame, indexOfLastGame); //Agarro de allGames los juegos que van a aparecer en la pagina, desde el indice de firstGame hasta el indice de lastGame
   const paginate = (pageNumber) => setCurrentPage(pageNumber); //Funcion que me permite cambiar de pagina
   console.log(currentGames);
+
+  const handleInputChange = (e) => {
+    e.preventDefault();
+    setName(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(getNameGames(name));
+    setCurrentPage(1);
+    setName("");
+  };
+
   // // RELOAD PAGE ------------------------------
   function handleClick(e) {
     e.preventDefault();
@@ -76,7 +94,33 @@ export default function Home() {
 
   return (
     <div className={styles.home}>
-      <Header />
+      {/* <Header/> */}
+      <header className={s.header}>
+        <nav>
+          <ul>
+            <Link className={s.titleLogo} to="/home">
+              <li className={s.liLogo}>GAMES</li>
+            </Link>
+            <li className={s.search}>
+              <div className="search-bar">
+                <input
+                  className={sty.input}
+                  type="text"
+                  placeholder="Search a Game..."
+                  onChange={(e) => handleInputChange(e)}
+                />
+                <button
+                  className={sty.btnSearch}
+                  type="submit"
+                  onClick={(e) => handleSubmit(e)}
+                >
+                  Search
+                </button>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </header>
       <header className={styles.headerHome}>
         <NavLink to="/home">
           <button className={styles.btnHome} onClick={(e) => handleClick(e)}>

@@ -21,4 +21,16 @@ describe('Videogame routes', () => {
       agent.get('/videogames').expect(200)
     );
   });
+  describe("GET /genres", function() {
+    it("it should has status code 200", function(done) {
+      supertest(app)
+        .get("/genres")
+        .expect(200)
+        .end(function(err, res){
+          if (err) done(err);
+          done();
+        });
+    });
+  });
 });
+
