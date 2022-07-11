@@ -18,7 +18,7 @@ const getGamesi = async () => {
   try {
     let games = [];
     let address = "";
-    while (games.length < 100) {
+    while (games.length < 20) {
       !games.length &&
         (address = `https://api.rawg.io/api/games?key=${APIKEY}`);
       let { data } = await axios.get(address);
