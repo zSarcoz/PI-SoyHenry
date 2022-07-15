@@ -57,19 +57,19 @@ const getByDb = async () => {
         },
       },
     });
-    const gameInfo = await game.map((game) => {
+    const gameInfo = await game.map((obj) => {
       return {
-        id: game.id,
-        name: game.name,
-        image: game.image,
-        rating: game.rating,
-        genres: game.genres.map((genre) => {
+        id: obj.id,
+        name: obj.name,
+        image: obj.image,
+        rating: obj.rating,
+        genres: obj.genres.map((genre) => {
           return genre.name;
         }),
-        platforms: game.platforms,
-        release_date: game.release_date,
-        description: game.description,
-        createdInDb: game.createdInDb,
+        platforms: obj.platforms,
+        release_date: obj.release_date,
+        description: obj.description,
+        createdInDb: obj.createdInDb,
       };
     });
     return gameInfo;
@@ -88,14 +88,14 @@ router.get("/videogames", async (req, res) => {
   const { name } = req.query;
   const games = await getAllGames();
   if (name) {
-    let gameName = await games.filter((game) =>
+    let gameName = games.filter((game) =>
       game.name.toLowerCase().includes(name.toLowerCase())
     );
     gameName.length
       ? res.status(200).send(gameName)
       : res.status(404).json("Videogame not found");
   } else {
-    res.json(games);
+    res.status(200).json(games);
   }
 });
 
