@@ -14,10 +14,7 @@ export function getVideogames() {
 export function postVideogames(payload) {
   return async function () {
     try {
-      // const response = 
       await axios.post("/videogames",{...payload});
-      // console.log(response);
-      // return response;
       alert('Succefully created');
     } catch (err) {
       console.log(err);
