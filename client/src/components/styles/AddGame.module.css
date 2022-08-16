@@ -1,0 +1,172 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
+/* font-family: 'Roboto', sans-serif; */
+/* font-family: 'Rubik', sans-serif; */
+.container{
+    display: flex;
+    flex-direction: column;
+    width: 600px; 
+    height:1100px; 
+    margin-top: 5rem;
+    margin-left: 25rem;
+    text-align: center;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: rgba(34, 34, 34, 0.541);
+    /* border: 3px solid #000; */
+    border-radius: 15px;
+    transition: .6s ease;
+}
+
+.container:hover{
+    transform: scale(1.1);
+}
+
+label {
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    padding: 4px 6px;
+    line-height: 190%;
+    outline-style: none;
+    
+    
+  }
+
+  .input{
+    font-family: 'Rubik', sans-serif;
+    font-size: medium;
+    color: black;
+    box-sizing: border-box;
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 15px;
+    background-color: #151515;
+    /* height: 40px; */
+    padding: 10px 25px;
+    margin: 20px;
+    transition: .5s ease;
+    color: white;
+  }
+
+  .input:hover{
+    background-color: rgb(226, 235, 243);
+    color: black;
+
+  }
+
+  .input:focus{
+    background-color: rgb(226, 235, 243);
+    color: black;
+  }
+
+  .btnSubmit,.divBtnBack{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    
+  }
+
+  .btnBack,.btnSub{
+    padding: 10px 20px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 5px;
+    cursor: pointer;
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px 2px whitesmoke;
+    transition: .5s ease;
+  }
+
+  .btnBack:hover,.btnSub:hover{
+    box-shadow: 0px 0px 1px 1px white;
+    background-color: ivory;
+    color: rgb(32, 32, 32);
+  }
+
+.description{
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    margin-bottom: 20px;
+    font-family: 'Rubik', sans-serif;
+    padding: 15px;
+    border-radius: 15px;
+}
+
+
+
+.select{
+    border-radius: 8px;
+    border: 1px solid white;
+    margin: 10px 50px;
+    padding: 10px 10px;
+    background-color: #151515;
+    color: white;
+    transition: .6s ease;
+}
+
+.select:hover{
+    background-color: aliceblue;
+    color: black;
+}
+
+.options{
+
+    background-color: rgb(34, 34, 34);
+    color: white;
+}
+
+.ul{
+  list-style: none;
+}
+
+
+.btnGenre{
+  background-color: #4b4b4b;
+  color: #fff7f1;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  margin-right: 25px;
+  padding: 10px;
+  border-radius: 50px;
+  font-family: 'Rubik', sans-serif;
+  box-shadow: 3px 2px 10px #ffffff;
+  transition: .5s ease;
+}
+
+.btnGenre:hover{
+  opacity: 85%;
+  background-color: white;
+  color: #000000;
+  box-shadow: 0px 0px 0px #ffffff;
+}
+
+.labelCheck{
+  display: flex;
+  color: rgb(165, 165, 165);
+  letter-spacing: 0px;
+  cursor: pointer;
+  transition: .6s ease;
+}
+
+.labelCheck:hover{
+  transform: scale(1.1);
+  color: white;
+  letter-spacing: 3px;
+}
+
+.checks{
+  display: flex;
+  margin-right: 20px;
+  cursor: pointer;
+  
+}
+

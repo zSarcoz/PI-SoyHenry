@@ -1,0 +1,44 @@
+.ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+  }
+
+  li + li{
+    margin-left: 4rem;
+  }
+
+.numberBtn{
+    padding: 10px;
+    background-color: aliceblue;
+    border-radius: 10px;
+    border: 1px solid white;
+    color: black;
+    font-size: 15px;
+    transition: .5s ease;
+    
+  }
+  
+  .numberBtn:hover{
+    color: black;
+    background-color: aliceblue;
+  }
+
+.btn{
+    padding: 10px;
+    background-color: transparent;
+    border-radius: 10px;
+    border: 1px solid white;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    transition: .5s ease;
+  }
+
+  .btn:hover{
+    color: black;
+    background-color: aliceblue;
+  }
+

@@ -1,0 +1,127 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
+/* font-family: 'Roboto', sans-serif; */
+/* font-family: 'Rubik', sans-serif; */
+
+.container{
+    width: 100%;
+    height: 200vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    /* overflow: auto; */
+}
+
+.button{
+    position: absolute;
+    top: 120px;
+    left: 48%;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    font-size: 20px;
+    padding: 10px;
+    color: rgb(216, 216, 216);
+    border-bottom: 2px solid transparent;
+    transition: .5s ease;
+}
+
+.button:hover{
+    transform: scale(1.1);
+    color: white;
+    border-bottom: 2px solid white;
+}
+
+.card{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: #1f1f1f;
+    left:4%;
+    min-width: 500px;
+    min-height: 1200px;
+    max-width: 800px;
+    max-height: 1500px;
+    margin: 15px;
+    margin-top: 200px;
+    /* border: 3px solid white; */
+    box-shadow: 6px 5px 5px rgba(0, 0, 0, 0.747);
+    border-radius: 15px;
+    color: white;
+    padding: 10px;
+    transition: .7s ease;
+    
+}
+
+.card:hover{
+    margin-top: 300px;
+    transform: scale(1.1);
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.747);
+}
+
+.image{
+    min-height: 40%;
+    max-height: 50%;
+    min-width: 100%;
+    max-width: 100%;
+    background-size: cover;
+    border-radius: 15px 15px 15px 15px;
+    transition: .5s ease;
+}
+
+.image:hover{
+    transform: scale(1.1);
+}
+
+.gameName{
+    font-family: 'Rubik', sans-serif; 
+    font-weight: 600;
+    margin: 10px;
+    margin-top: 30px;
+    /* border: 3px solid white; */
+    transition: .6s;
+}
+
+.gameName:hover{
+    transform: scale(1.1);
+}
+
+.gameDescription{
+    display:flex;
+}
+
+.gameDetail{
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 15px;
+    /* gap: 100px; */
+    width: 100%;
+    height: 200px;
+    background-color: #1f1f1f;
+    align-self: stretch;
+    text-decoration: none;
+    border-radius: 0 0 15px 15px;
+}
+
+.genres{
+    display: flex;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.gameGenre{
+    display: flex;
+    position: relative;
+    padding: 3px;
+    padding-top: 0px;
+    margin-left: 50px;
+    color: rgb(173, 173, 173);
+}
+
+.gameGenre:hover{
+    color: white;
+}
