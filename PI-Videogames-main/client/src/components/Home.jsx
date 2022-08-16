@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -21,6 +21,7 @@ import sty from "./styles/SearchBar.module.css";
 
 export default function Home() {
   const dispatch = useDispatch();
+  const navigate = useHistory();
   const [order, setOrder] = useState("");
   const [name, setName] = useState("");
 
@@ -31,6 +32,7 @@ export default function Home() {
   useEffect(() => {
     dispatch(getVideogames());
     dispatch(getGenres());
+    setName("");
   }, [dispatch]); //Me traigo todos los juegos SEGUN EL DISPATCH | cada vez que se renderiza Home
 
   // PAGINATION ------------------------------
@@ -52,6 +54,7 @@ export default function Home() {
     dispatch(getNameGames(name));
     setCurrentPage(1);
     setName("");
+    navigate.replace("/home");
   };
 
   // // RELOAD PAGE ------------------------------
@@ -109,13 +112,15 @@ export default function Home() {
                   placeholder="Search a Game..."
                   onChange={(e) => handleInputChange(e)}
                 />
-                <button
-                  className={sty.btnSearch}
-                  type="submit"
-                  onClick={(e) => handleSubmit(e)}
-                >
-                  Search
-                </button>
+                <NavLink to="/home">
+                  <button
+                    className={sty.btnSearch}
+                    type="submit"
+                    onClick={(e) => handleSubmit(e)}
+                  >
+                    <i class="bx bx-search"></i>
+                  </button>
+                </NavLink>
               </div>
             </li>
           </ul>
