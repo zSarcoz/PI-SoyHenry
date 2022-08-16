@@ -4,7 +4,6 @@ const { Videogame, Genre } = require("../db");
 const { getGenres, getGenresDb } = require("./getGenres");
 const { APIKEY } = process.env;
 const { getById } = require("./getGameByDb");
-const { getGames } = require("./getGame");
 
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
@@ -18,7 +17,7 @@ const getGamesi = async () => {
   try {
     let games = [];
     let address = "";
-    while (games.length < 20) {
+    while (games.length < 61) {
       !games.length &&
         (address = `https://api.rawg.io/api/games?key=${APIKEY}`);
       let { data } = await axios.get(address);
