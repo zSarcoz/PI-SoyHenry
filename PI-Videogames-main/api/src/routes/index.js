@@ -29,7 +29,7 @@ const getGamesi = async () => {
       return {
         id: el.id,
         name: el.name,
-        description: el.description_raw,
+        // description: el.description_raw,
         rating: el.rating,
         platforms: el.platforms.map((el) => el.platform.name),
         release_date: el.released,
@@ -37,7 +37,7 @@ const getGamesi = async () => {
         genres: el.genres.map((genre) => genre.name),
       };
     });
-
+    console.log("Esto es apiGame",apiGame)
     return apiGame;
   } catch (error) {
     return new Error(error + "error en el servidor");
@@ -79,8 +79,10 @@ const getByDb = async () => {
 
 const getAllGames = async () => {
   const gamesInfo = await getGamesi();
+  console.log("Esto es gameInfo",gamesInfo);
   const dbInfo = await getByDb();
   const infoAll = [...gamesInfo, ...dbInfo];
+  console.log("Esto es todos los games", infoAll);
   return infoAll;
 };
 router.get("/videogames", async (req, res) => {
@@ -160,8 +162,9 @@ router.delete("/videogames/:id", async (req, res) => {
     await Videogame.destroy({ where: { id } });
     res.send('Videogame deleted')
   } catch (e) {
-    console.log(e);
+    console.log(e); 
   }
 });
 
 module.exports = router;
+ 

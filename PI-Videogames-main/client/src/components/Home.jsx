@@ -42,7 +42,6 @@ export default function Home() {
   const indexOfFirstGame = indexOfLastGame - gamesPerPage; //Calculo el indice del primer juego que va a aparecer en la pagina
   const currentGames = allGames?.slice(indexOfFirstGame, indexOfLastGame); //Agarro de allGames los juegos que van a aparecer en la pagina, desde el indice de firstGame hasta el indice de lastGame
   const paginate = (pageNumber) => setCurrentPage(pageNumber); //Funcion que me permite cambiar de pagina
-  console.log(currentGames);
 
   const handleInputChange = (e) => {
     e.preventDefault();
