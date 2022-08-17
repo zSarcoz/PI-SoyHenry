@@ -38,6 +38,7 @@ export function setGenres() {
 export function getGenres() {
   return async function (dispatch) {
     const response = await axios.get("/genres");
+    console.log(response)
     return dispatch({
       type: "GET_GENRES",
       payload: response.data,

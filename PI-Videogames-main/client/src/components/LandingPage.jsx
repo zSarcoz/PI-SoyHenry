@@ -1,7 +1,7 @@
 import React, { useEffect} from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setGenres, getVideogames } from "../actions";
+import { setGenres, getVideogames, getGenres } from "../actions";
 import style from "./styles/LandingPage.module.css";
 import callOfDuty from "../images/callOfDuty.jpg";
 import Header from "./Header";
@@ -15,6 +15,7 @@ export default function LandingPage() {
   useEffect(() => {
     dispatch(setGenres());
     dispatch(getVideogames());
+    // dispatch(getGenres());
   }, [dispatch]);
 
   return (

@@ -13,36 +13,66 @@ const router = Router();
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
-const getGamesi = async () => {
-  try {
-    let games = [];
-    let address = "";
-    while (games.length < 60) {
-      !games.length &&
-        (address = `https://api.rawg.io/api/games?key=${APIKEY}`);
-      let { data } = await axios.get(address);
-      games = [...games, ...data.results];
-      address = data.next;
-    }
+const getGamesi = async() =>{
+  try{
+    const games1 = await axios.get(`https://api.rawg.io/api/games?&key=${APIKEY}`);
+    const games2 = await axios.get(games1.data.next);
+    const games3 = await axios.get(games2.data.next);
+    const games4 = await axios.get(games3.data.next);
+    const games5 = await axios.get(games4.data.next);
+    let gamesApi = games1.data.results.concat(games2.data.results, games3.data.results, games4.data.results, games5.data.results)
+    // console.log(gamesApi);
 
-    let apiGame = games.map((el) => {
+    const gamesDetailAPI = await Promise.all(gamesApi.map(async game => {
+      let description_game = await axios.get(`https://api.rawg.io/api/games/${game.id}?&key=${APIKEY}`);
       return {
-        id: el.id,
-        name: el.name,
-        // description: el.description_raw, 
-        rating: el.rating,
-        platforms: el.platforms.map((el) => el.platform.name),
-        release_date: el.released,
-        image: el.background_image,
-        genres: el.genres.map((genre) => genre.name),
-      };
-    });
-    console.log("Esto es apiGame",apiGame)
-    return apiGame;
-  } catch (error) {
-    return new Error(error + "error en el servidor");
+          image: game.background_image,
+          name: game.name,
+          genres: game.genres.map((el) => el.name),
+          description: description_game.data.description,
+          id: game.id,
+          rating: game.rating,
+          realasedDate: game.released,
+          plaftorms: game.platforms.map((el) => el.platform.name),
+      }
+  }))
+  // console.log(gamesDetailAPI) 
+    return gamesDetailAPI;
+  }catch(err){
+    console.log(err);
   }
-};
+}
+
+// const getGamesi = async () => {
+//   try {
+//     let games = [];
+//     let address = ""; 
+//     while (games.length < 60) { 
+//       !games.length && 
+//         (address = `https://api.rawg.io/api/games?key=${APIKEY}`);
+//       let { data } = await axios.get(address);
+//       games = [...games, ...data.results];
+//       address = data.next;
+//     }
+
+//     let apiGame = games.map((el) => {
+//       return {
+//         id: el.id,
+//         name: el.name,
+//         // description: el.description_raw, 
+//         rating: el.rating,
+//         platforms: el.platforms.map((el) => el.platform.name),
+//         release_date: el.released,
+//         image: el.background_image,
+//         genres: el.genres.map((genre) => genre.name),
+//       };
+//     });
+//     console.log("Esto es apiGame",apiGame)
+//     return apiGame;
+//   } catch (error) {
+//     return new Error(error + "error en el servidor");
+//   }
+// };
 
 // SELECT * FROM videogames
 const getByDb = async () => {
@@ -150,7 +180,7 @@ router.get("/genres", async (req, res, next) => {
     const genres = await getGenresDb();
     genres
       ? res.status(200).json(genres)
-      : res.status(404).send("No se encontro un video juego con ese nombre");
+      : res.status(404).send("No se encontro un video juego con ese nombre"); 
   } catch (error) {
     next(error);
   }
