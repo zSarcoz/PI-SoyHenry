@@ -17,7 +17,7 @@ const getGamesi = async () => {
   try {
     let games = [];
     let address = "";
-    while (games.length < 61) {
+    while (games.length < 60) {
       !games.length &&
         (address = `https://api.rawg.io/api/games?key=${APIKEY}`);
       let { data } = await axios.get(address);
@@ -81,7 +81,8 @@ const getAllGames = async () => {
   const gamesInfo = await getGamesi();
   console.log("Esto es gameInfo",gamesInfo);
   const dbInfo = await getByDb();
-  const infoAll = [...gamesInfo, ...dbInfo];
+  const infoAll = await gamesInfo.concat(dbInfo)
+  // const infoAll = [...gamesInfo, ...dbInfo];
   return infoAll;
 };
 router.get("/videogames", async (req, res) => {

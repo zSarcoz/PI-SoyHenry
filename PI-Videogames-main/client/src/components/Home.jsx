@@ -148,8 +148,8 @@ export default function Home() {
           className={styles.orderAndFilter}
           onChange={(e) => handleRatingOrder(e)}
         >
-          <option value="fuer-asc">More rating</option>
-          <option value="fuer-desc">Less Rating</option>
+          <option value="fuer-asc">Less Rating</option>
+          <option value="fuer-desc">More rating</option>
         </select>
         <select
           className={styles.orderAndFilter}
