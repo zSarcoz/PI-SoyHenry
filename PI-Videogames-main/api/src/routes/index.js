@@ -78,11 +78,11 @@ const getByDb = async () => {
 };
 
 const getAllGames = async () => {
-  const gamesInfo = await getGamesi();
+  let gamesInfo = await getGamesi();
   console.log("Esto es gameInfo",gamesInfo);
-  const dbInfo = await getByDb();
-  const infoAll = await gamesInfo.concat(dbInfo)
-  // const infoAll = [...gamesInfo, ...dbInfo];
+  let dbInfo = await getByDb();
+  // let infoAll = await dbInfo.concat(gamesInfo)
+  let infoAll = [...gamesInfo, ...dbInfo];
   return infoAll;
 };
 router.get("/videogames", async (req, res) => {
