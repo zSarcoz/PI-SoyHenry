@@ -29,7 +29,7 @@ const getGamesi = async () => {
       return {
         id: el.id,
         name: el.name,
-        // description: el.description_raw,
+        // description: el.description_raw, 
         rating: el.rating,
         platforms: el.platforms.map((el) => el.platform.name),
         release_date: el.released,
@@ -82,7 +82,6 @@ const getAllGames = async () => {
   console.log("Esto es gameInfo",gamesInfo);
   const dbInfo = await getByDb();
   const infoAll = [...gamesInfo, ...dbInfo];
-  console.log("Esto es todos los games", infoAll);
   return infoAll;
 };
 router.get("/videogames", async (req, res) => {
