@@ -6,7 +6,7 @@
     margin: 4px 10px;
     display: inline-block;
     border: 1px solid white;
-    border-radius: 10px;
+    border-radius: 20px;
     box-sizing: border-box;
     opacity:0.9;
     color: white;
@@ -23,6 +23,7 @@
 .input:focus{
     width: 20rem;
     color: black;
+    border: none;
     background-color: white;
 }
 

@@ -5,6 +5,7 @@ import LandingPage from "./components/LandingPage";
 import AddGame from "./components/AddGame";
 import GameDetail from "./components/GameDetail";
 import ErrorNotFound from "./components/ErrorNotFound";
+import Profile from "./components/Profile";
 
 function App() {
   return (
@@ -14,6 +15,9 @@ function App() {
           <Switch>
             <Route exact path="/">
               <LandingPage />
+            </Route>
+            <Route exact path="/profile">
+              <Profile />
             </Route>
             <Route path="/home">
               <Home />

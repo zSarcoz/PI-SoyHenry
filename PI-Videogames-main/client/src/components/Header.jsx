@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import styles from "./styles/Header.module.css";
+import imgProfile from "./styles/Profile.png";
 
 export default function Header() {
   return (
@@ -11,12 +12,20 @@ export default function Header() {
           <Link className={styles.titleLogo} to="/home">
             <li className={styles.liLogo}>GAMES</li>
           </Link>
-          {/* <li>Contact</li>
-          <li>About</li>
-          <li>Sign up</li> */}
           <li className={styles.search}>
             <SearchBar/>
           </li>
+          <li className={styles.liLogo}>
+              <Link to="/profile">
+                <img
+                  className={styles.imgProfile}
+                  src={
+                    imgProfile
+                  }
+                  alt="Profile"
+                />
+              </Link>
+            </li>
         </ul>
       </nav>
     </header>

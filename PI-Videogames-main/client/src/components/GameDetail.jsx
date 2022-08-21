@@ -19,7 +19,7 @@ export default function GameDetail() {
 
   return (
     <div className={styles.container}>
-      <Header />
+      {/* <Header /> */}
       <Link to="/home">
         <button className={styles.button}>Back to Home</button>
       </Link>

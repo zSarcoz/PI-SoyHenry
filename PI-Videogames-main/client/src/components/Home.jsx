@@ -18,6 +18,7 @@ import Loading from "./Loading";
 import styles from "./styles/Home.module.css";
 import s from "./styles/Header.module.css";
 import sty from "./styles/SearchBar.module.css";
+import imgProfile from "./styles/Profile.png";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -121,6 +122,17 @@ export default function Home() {
                   </button>
                 </NavLink>
               </div>
+            </li>
+            <li className={styles.liLogo}>
+              <Link to="/profile">
+                <img
+                  className={styles.imgProfile}
+                  src={
+                    imgProfile
+                  }
+                  alt="Profile"
+                />
+              </Link>
             </li>
           </ul>
         </nav>

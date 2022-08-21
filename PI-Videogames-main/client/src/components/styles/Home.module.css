@@ -60,6 +60,26 @@ a{
   transition: .5s ease;
 }
 
+.imgProfile {
+  text-decoration: none;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  margin-right: 3rem;
+  transition: .5s ease;
+}
+
+.imgProfile:hover{
+  transform: scale(1.2);
+}
+
+.liLogo {
+  display: flex;
+  justify-content: flex-start;
+  font-size: 25px;
+}
+
 
 .btnHome:hover{
     border-bottom: 2px solid white;

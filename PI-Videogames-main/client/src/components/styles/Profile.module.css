@@ -1,0 +1,259 @@
+.h1 {
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 3rem;
+    opacity: 0.8;
+    padding-bottom: 1rem;
+    transition: .8s ease;
+  }
+
+  .h1:hover{
+    letter-spacing: 1.5px;
+    transform: scale(1.1);
+  }
+  .h2,
+  .p {
+    color: #ffffff;
+    font-weight: 500;
+    opacity: 0.8;
+  }
+  
+  .h3 {
+    color: #151515;
+    font-weight: 600;
+    opacity: 0.8;
+  }
+
+  .h2Game{
+    color: #ffffff;
+    font-weight: 700;
+    opacity: 0.8;
+    font-size: 15px;
+  }
+
+  .pGame{
+    color: #ffffff;
+    font-weight: 500;
+    opacity: 0.8;
+    font-size: 12px;
+  }
+  
+  .main {
+    font-family: "Poppins", sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(to right top, #151515, #333333);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .imgProfile{
+    text-decoration: none;
+    border-radius: 50%;
+    width: 5rem;
+    height: 5rem;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  
+  .glass {
+    background: white;
+    height: 120vh;
+    width: 60%;
+    background: linear-gradient(
+      to right bottom,
+      rgba(92, 92, 92, 0.7),
+      #1515153f
+    );
+    border-radius: 2rem;
+    z-index: 2;
+    backdrop-filter: blur(1rem);
+    display: flex;
+    margin-bottom: 3rem;
+    margin-top: 5rem;
+  }
+  .circle1,
+  .circle2,
+  .circle3 {
+    background: white;
+    background: linear-gradient(
+      to right bottom,
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0.3)
+    );
+    height: 20rem;
+    width: 20rem;
+    position: absolute;
+    border-radius: 50%;
+  }
+  
+  .circle1 {
+    top: 5%;
+    right: 15%;
+  }
+  .circle2 {
+    bottom: 5%;
+    left: 10%;
+  }
+  .circle3{
+    bottom: -38%;
+    right: 30%;
+  }
+
+  .input:hover{
+    background-color: #e7e7e7;
+  }
+  .dashboard {
+    flex: 1;
+    display: flex;
+    width: 17rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    text-align: center;
+    background: linear-gradient(
+      to right bottom,
+      rgba(145, 145, 145, 0.7),
+      rgba(61, 61, 61, 0.3)
+    );
+    border-radius: 2rem;
+  }
+
+  .links{
+    width: 100%;
+    left: 10%;
+
+  }
+  .link {
+    display: flex;
+    /* margin: 1rem 0rem; */
+    padding: 1rem 5rem;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    cursor: pointer;
+    transition: .5s ease;
+  }
+
+  .link:hover{
+    background: #2e2e2e6e;
+    letter-spacing: 1.5px;
+  }
+  .link .h2 {
+    padding: 0rem 2rem;
+  }
+
+  .imgController{
+    position: absolute;
+    top: -10%;
+    right: 10%;
+    height: 6rem;
+    width: 6rem;
+  }
+
+  .imgGame{
+    /* position: absolute; */
+    /* top: -10%; */
+    /* right: 10%; */
+    height: 5rem;
+    width: 5rem;
+  }
+  
+  .games {
+    flex: 2;
+  }
+  
+  .pro {
+    background: linear-gradient(to right top, #151515, #333333);
+    border-radius: 2rem;
+    color: white;
+    padding: 1rem;
+    position: relative;
+  }
+  
+  .pro .img {
+    position: absolute;
+    top: -10%;
+    right: 10%;
+  }
+  .pro .h2 {
+    width: 40%;
+    font-size: 18px;
+    color: white;
+    font-weight: 600;
+  }
+  
+  /* GAMES */
+  .status {
+
+    margin-top: 3rem;
+    margin-bottom: 0rem;
+  }
+  
+  .status .input {
+    background: rgba(104, 104, 104, 0.582);
+    border: none;
+    width: 50%;
+    padding: 0.5rem;
+    border-radius: 2rem;
+    transition: .6s ease;
+  }
+
+  .status .input:hover{
+    background:rgba(128, 128, 128, 0.582);
+  }
+  
+  .games {
+    margin: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+  
+  .card {
+    display: flex;
+    background: linear-gradient(to right top, #333333c0, #15151569 );
+    border-radius: 1rem;
+    margin: 2.5rem 0rem;
+    padding: 1.3rem;
+    box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.212);
+    justify-content: space-between;
+    transition: .5s ease;
+  }
+
+  .card:hover{
+    transform: scale(1.1);
+    box-shadow: 0px 0px 0px rgba(122, 122, 122, 0.212);
+  }
+  
+  .progress {
+    background: linear-gradient(to right top, #252525, #131313 );
+    width: 100%;
+    height: 15px;
+    border-radius: 1rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .progress::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: rgb(236, 236, 236);
+    position: absolute;
+    left: 60%;
+  }
+  .cardInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .percentage {
+    font-weight: bold;
+    background: linear-gradient(to right top, #e7e7e7, #979797);
+    background-clip: text;
+    font-size: 15px;
+    -webkit-text-fill-color: transparent;
+  }
+  
