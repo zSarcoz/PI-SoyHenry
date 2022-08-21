@@ -15,7 +15,7 @@
 
 .button{
     position: absolute;
-    top: 90px;
+    top: 50px;
     left: 48%;
     background-color: transparent;
     cursor: pointer;
@@ -45,7 +45,7 @@
     max-width: 800px;
     max-height: 1500px;
     margin: 15px;
-    margin-top: 20rem;
+    margin-top: 10rem;
     /* border: 3px solid white; */
     box-shadow: 6px 5px 5px rgba(0, 0, 0, 0.747);
     border-radius: 15px;

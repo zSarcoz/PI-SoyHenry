@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getGameById, getClean } from "../actions";
+import { getGameById, getVideogames, getClean } from "../actions";
 import Header from "./Header";
 import Loading from "./Loading";
 import styles from "./styles/GameDetail.module.css";
@@ -14,6 +14,7 @@ export default function GameDetail() {
 
   useEffect(() => {
     dispatch(getGameById(id));
+    dispatch(getVideogames())
     dispatch(getClean());
   }, [dispatch, id]);
 
